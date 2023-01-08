@@ -15,7 +15,7 @@
       li {
         list-style: none;
       }
-     
+
       .item {
         margin-top: 2rem;
       }
@@ -25,14 +25,17 @@
     <header class="main-header">
       <nav class="main-header__nav">
         <ul class="main-header__item-list">
-            <li class="main-header__item">
-                <a href="/">Home</a>
-              </li>
+          <li class="main-header__item">
+            <a href="/">Home</a>
+          </li>
           <li class="main-header__item">
             <a href="/survey">Ovoz berish</a>
           </li>
           <li class="main-header__item">
             <a href="/result">Natijalarni ko'rish</a>
+          </li>
+          <li class="main-header__item">
+            <a href="/delete">Ovozlarni o'chirish</a>
           </li>
         </ul>
       </nav>
@@ -40,8 +43,8 @@
     <main>
       <div class="items_div">
         <ul class="items">
-          <li class="item">ha, yoqdi :<%= liked %>%</li>
-          <li class="item">Qoniqarsiz : <%= disliked %>%</li>
+          <li class="item">ha, yoqdi :<%= liked>=0 ?liked:0%>%</li>
+          <li class="item">Qoniqarsiz :<%= disliked>=0 ?disliked:0%>%</li>
         </ul>
       </div>
       <h3>Message : <%= msg %></h3>

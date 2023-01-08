@@ -2,6 +2,8 @@
 
 const express = require("express");
 
+require("dotenv").config();
+
 const { Liked, Disliked } = require("../models/survey");
 
 const router = express.Router();
@@ -34,6 +36,30 @@ router.post("/survey", async (req, res, next) => {
     return res.status(200).redirect("/result");
   } catch (error) {
     console.log(`Error in survey (post) endpoint \n :${error}`);
+    return next(error);
+  }
+});
+
+router.get("/delete", async (req, res, next) => {
+  return res.render("delete", { pageTitle: "Delete all" });
+});
+router.post("/delete", async (req, res, next) => {
+  const pwd = req.body.pwd;
+  try {
+    if (pwd == process.env.adminPassword) {
+      const result = await Liked.deleteMany({ __v: 0 });
+      const result1 = await Disliked.deleteMany({ __v: 0 });
+      console.log(result, result1);
+      return res.render("error", {
+        pageTitle: "Deleted",
+        msg: "All votes have been deleted successfully",
+        success: "True",
+      });
+    } else {
+      return res.redirect("/");
+    }
+  } catch (error) {
+    console.log(`Error in delete(post) endpoint \n :${error}`);
     return next(error);
   }
 });
