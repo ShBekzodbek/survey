@@ -2,7 +2,7 @@
 
 const express = require("express");
 
-const Survey = require("../models/survey");
+const { Liked, Disliked } = require("../models/survey");
 
 const router = express.Router();
 
@@ -10,35 +10,25 @@ router.get("/survey", async (req, res, next) => {
   return res.render("survey", { pageTitle: "Survey" });
 });
 
-router.post("/survey", async (req, res, next) => {
-  const survey = await Survey.findById("63b9d77bc856357498caafef");
-  let countL = 0,
-    countD = 0;
-
+router.post("/update", async (req, res, next) => {
   const { liked, disliked } = req.body;
   try {
     if ((!liked && !disliked) || (liked && disliked)) {
       return res.status(400).redirect("/survey");
     }
-    if (liked == "on") {
-      countL++;
-    } else {
-      countD++;
-    }
-    if (survey.length == 0) {
-      const survey = await Survey.create({
-        liked: countL,
-        disliked: countD,
+    console.log(liked);
+    if (liked == "1") {
+      const li = await Liked.create({
+        liked: liked,
       });
-      let result = survey.save();
+      let result = await li.save();
       console.log(result);
     } else {
-      if (liked == "on") {
-        survey.liked++;
-      } else {
-        survey.disliked++;
-      }
-      await survey.save();
+      const disli = await Disliked.create({
+        disliked: disliked,
+      });
+      let result = await disli.save();
+      console.log(result);
     }
 
     return res.status(200).redirect("/result");
@@ -50,10 +40,12 @@ router.post("/survey", async (req, res, next) => {
 
 router.get("/result", async (req, res, next) => {
   try {
-    const survey = await Survey.findById("63b9d77bc856357498caafef");
-    let likesPer = (100 * survey.liked) / (survey.liked + survey.disliked);
-    let dislikesPer =
-      (100 * survey.disliked) / (survey.liked + survey.disliked);
+    let liked = await Liked.find();
+    let disliked = await Disliked.find();
+    liked = liked.length;
+    disliked = disliked.length;
+    let likesPer = (100 * liked) / (liked + disliked);
+    let dislikesPer = (100 * disliked) / (liked + disliked);
     return res.render("result", {
       pageTitle: "Result",
       msg: "Thanks for voting",

@@ -2,17 +2,24 @@
 
 const { Schema, model } = require("mongoose");
 
-const surveySchema = new Schema({
+const likeSchema = new Schema({
   liked: {
     type: Number,
     default: 0,
   },
+});
+const dislikeSchema = new Schema({
   disliked: {
     type: Number,
     default: 0,
   },
 });
 
-const Survey = model("Survey", surveySchema);
+const Liked = model("Liked", likeSchema);
 
-module.exports = Survey;
+const Disliked = model("Disliked", dislikeSchema);
+
+module.exports = {
+  Liked,
+  Disliked,
+};

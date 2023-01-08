@@ -50,11 +50,3 @@ app.listen(port, (err) => {
     console.log(`Port:${port} is being listened...`);
   }
 });
-
-let likes = 5,
-  dislikes = 3;
-
-let likesPer = (100 * likes) / (likes + dislikes);
-let dislikesPer = (100 * dislikes) / (likes + dislikes);
-console.log(likesPer);
-console.log(dislikesPer);

@@ -14,16 +14,17 @@
     </style>
   </head>
   <body>
-    <form action="/survey" method="POST">
+    <form action="/update" method="POST">
       <h2 style="border: 30%">Website sizga yoqdimi ?</h2>
       <ul>
         <li>
-          <input type="radio" name="liked" /><label for="like"
+          <input type="radio" name="liked"  value="1"/><label for="like"
             >Ha, yoqdi
           </label>
         </li>
         <li>
-          <input type="radio" name="disliked" /><label for="dislike"
+          <input type="radio" name="disliked" value="0" /><label
+            for="dislike"
             >Qoniqarsiz
           </label>
         </li>
