@@ -10,7 +10,7 @@ router.get("/survey", async (req, res, next) => {
   return res.render("survey", { pageTitle: "Survey" });
 });
 
-router.post("/update", async (req, res, next) => {
+router.post("/survey", async (req, res, next) => {
   const { liked, disliked } = req.body;
   try {
     if ((!liked && !disliked) || (liked && disliked)) {

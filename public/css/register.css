@@ -1,0 +1,20 @@
+/** @format */
+
+.form-control {
+  font-size: 1rem;
+  padding: 4rem 2.3rem 10rem 1rem;
+  background-color: rgb(216, 162, 61);
+  margin: 0 0rem 4rem 0;
+  margin-bottom: 2rem;
+}
+button {
+  margin: 3rem 4rem 3rem 3rem;
+  padding: 3rem 2.5rem 2rem 1rem;
+}
+
+input {
+  font-family: fantasy;
+  margin-top: 1rem;
+  margin: 1rem 0.5 2rem 2rem;
+  padding: 1rem 1rem 1rem 0.5rem;
+}

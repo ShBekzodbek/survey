@@ -2,6 +2,8 @@
 
 const express = require("express");
 
+const path = require("path");
+
 const conn = require("./src/config/connnectDB");
 
 const logger = require("morgan");
@@ -15,6 +17,7 @@ const app = express();
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
 app.set("views", "src/views");
@@ -31,7 +34,10 @@ const surveyRouter = require("./src/routes/survey");
 
 const port = process.env.PORT || 5000;
 
+app.get("/", (req, res, next) => {
+  return res.render("index",{pageTitle:"Home"})
 
+});
 
 app.use("/", surveyRouter);
 

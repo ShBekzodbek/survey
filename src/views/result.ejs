@@ -7,12 +7,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/add-product.css" />
+    <style>
+      h3 {
+        text-align: center;
+      }
+      li {
+        list-style: none;
+      }
+     
+      .item {
+        margin-top: 2rem;
+      }
+    </style>
   </head>
   <body>
-    <ul>
-      <li>ha, yoqdi : <%= liked %>%</li>
-      <li>Qoniqarsiz : <%= disliked %>%</li>
-    </ul>
-    <h3>Message : <%= msg %></h3>
+    <header class="main-header">
+      <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a href="/">Home</a>
+              </li>
+          <li class="main-header__item">
+            <a href="/survey">Ovoz berish</a>
+          </li>
+          <li class="main-header__item">
+            <a href="/result">Natijalarni ko'rish</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="items_div">
+        <ul class="items">
+          <li class="item">ha, yoqdi :<%= liked %>%</li>
+          <li class="item">Qoniqarsiz : <%= disliked %>%</li>
+        </ul>
+      </div>
+      <h3>Message : <%= msg %></h3>
+    </main>
   </body>
 </html>
