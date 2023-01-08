@@ -40,9 +40,15 @@ router.post("/survey", async (req, res, next) => {
   }
 });
 
-router.get("/delete", async (req, res, next) => {
-  return res.render("delete", { pageTitle: "Delete all" });
-});
+// router.get("/delete", async (req, res, next) => {
+//   try {
+
+//     const data = await
+//   } catch (error) {
+
+//   }
+// return res.render("delete", { pageTitle: "Delete all" });
+// });
 router.post("/delete", async (req, res, next) => {
   const pwd = req.body.pwd;
   try {
@@ -50,8 +56,7 @@ router.post("/delete", async (req, res, next) => {
       const result = await Liked.deleteMany({ __v: 0 });
       const result1 = await Disliked.deleteMany({ __v: 0 });
       console.log(result, result1);
-      return res.render("error", {
-        pageTitle: "Deleted",
+      return res.send({
         msg: "All votes have been deleted successfully",
         success: "True",
       });
@@ -72,8 +77,7 @@ router.get("/result", async (req, res, next) => {
     disliked = disliked.length;
     let likesPer = (100 * liked) / (liked + disliked);
     let dislikesPer = (100 * disliked) / (liked + disliked);
-    return res.render("result", {
-      pageTitle: "Result",
+    return res.status(200).send({
       msg: "Thanks for voting",
       liked: Math.round(likesPer),
       disliked: Math.round(dislikesPer),
