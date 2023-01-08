@@ -8,9 +8,9 @@ const { Liked, Disliked } = require("../models/survey");
 
 const router = express.Router();
 
-router.get("/survey", async (req, res, next) => {
-  return res.render("survey", { pageTitle: "Survey" });
-});
+// router.get("/survey", async (req, res, next) => {
+//   return res.render("survey", { pageTitle: "Survey" });
+// });
 
 router.post("/survey", async (req, res, next) => {
   const { liked, disliked } = req.body;
